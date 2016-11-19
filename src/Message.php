@@ -71,10 +71,10 @@ class Message {
       
     
     static public function loadMessageById(mysqli $connection, $id) {
-        $sql = "SELECT m.*, urecipient.userName as recipientName, usender.userName as senderName
+        $sql = "SELECT m.*, ur.userName as recipientName, us.userName as senderName
                 FROM Messages as m
-                JOIN Users as urecipient ON m.recipientUserId = urecipient.id
-                JOIN Users as usender ON m.senderUserId = usender.id
+                JOIN Users as ur ON m.recipientUserId = ur.userId
+                JOIN Users as us ON m.senderUserId = us.userId
                 WHERE m.messageId=$id";
         $result = $connection->query($sql);
         if ($result == true && $result->num_rows == 1) {

@@ -39,16 +39,30 @@
     echo'<table border = 0>';
 
     foreach ($loadReceived as $message) {
-        echo '<tr>';
-        echo '<td width = "30%" align = "left">Received from: @'.trim($message->getSenderUserName()).'</td>';
-        echo '<td width = "20%" align = "left">'.trim($message->getCreationDate()).'</td>';
-        echo '<td width = "50%">Text:</td>';
+        
+        if (!$message->getIsRead()) {
+            $startB = '<b>';
+            $unread = "<b>Unread</b>";
+            $endB = '</b>';
+        } else {
+            $startB = '';
+            $unread = '';
+            $endB = '';   
+        }
+        
+        $messageId = $message->getId();
+        
+        echo '<tr>';      
+        echo '<td width = "5%">'.$unread.'</td>';
+        echo '<td width = "15%" align = "left">'.$startB.'From: @'.trim($message->getSenderUserName()).$endB.'</td>';
+        echo '<td width = "15%" align = "left">'.$startB.trim($message->getCreationDate()).$endB.'</td>';
+        echo '<td width = "50%">'.$startB.'Text:'.$endB.'</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td colspan = "2"></td>';
-        echo '<td width = "50%">'.$message->getText().'</td>';
+        echo '<td colspan = "3"></td>';
+        echo '<td width = "50%"><a href="showMessage.php?id='.$messageId.'">'.$startB.substr($message->getText(),0,29) .'...'.$endB.'</a></td>';
         echo '</tr>';
-        echo '<tr><td colspan = "3">&nbsp</td></tr>';
+        echo '<tr><td colspan = "4">&nbsp</td></tr>';
   
     }
     echo'</table>';
@@ -58,16 +72,37 @@
         echo'<table border = 0>';
 
     foreach ($loadSent as $message) {
+                if (!$message->getIsRead()) {
+            $startB = '<b>';
+            $unread = "<b>Unread</b>";
+            $endB = '</b>';
+        } else {
+            $startB = '';
+            $unread = '';
+            $endB = '';
+        }
+        
+        $messageId = $message->getId();
+        
         echo '<tr>';
-        echo '<td width = "30%" align = "left">Sent to: @'.trim($message->getRecipientUserName()).'</td>';
-        echo '<td width = "20%" align = "left">'.trim($message->getCreationDate()).'</td>';
-        echo '<td width = "50%">Text:</td>';
+        echo '<td width = "5%">'.$unread.'</td>';
+        echo '<td width = "15%" align = "left">'.$startB.'Sent to: @'.trim($message->getRecipientUserName()).$endB.'</td>';
+        echo '<td width = "15%" align = "left">'.$startB.trim($message->getCreationDate()).$endB.'</td>';
+        echo '<td width = "50%">'.$startB.'Text:'.$endB.'</td>';
         echo '</tr>';
         echo '<tr>';
-        echo '<td colspan = "2"></td>';      
-        echo '<td width = "50%">'.$message->getText().'</td>';
+        echo '<td colspan = "3"></td>';      
+        echo '<td width = "50%"><a href="showMessage.php?id='.$messageId.'">'.$startB.substr($message->getText(),0,29).'...'.$endB.'</a></td>';
         echo '</tr>';
-        echo '<tr><td colspan = "3">&nbsp</td></tr>';
+        echo '<tr><td colspan = "4">&nbsp</td></tr>';
   
     }
     echo'</table>';
+    
+    
+$connection->close();
+$connection = null;
+
+?>
+</body>
+</html>

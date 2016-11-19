@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 29, 2016 at 01:13 AM
+-- Generation Time: Nov 20, 2016 at 12:40 AM
 -- Server version: 5.5.50-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.17
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
   PRIMARY KEY (`commentId`),
   KEY `userId` (`userId`),
   KEY `tweetId` (`tweetId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `Comment`
@@ -72,7 +72,12 @@ INSERT INTO `Comment` (`commentId`, `text`, `creationDate`, `userId`, `tweetId`)
 (28, 'tu jestesm', '2016-10-29 01:03:24', 10, 15),
 (29, 'Pani Wydra?', '2016-10-29 01:06:12', 16, 14),
 (30, 'sia la la la la', '2016-10-29 01:06:25', 16, 10),
-(31, 'Å›pisz?', '2016-10-29 01:06:51', 16, 5);
+(31, 'Å›pisz?', '2016-10-29 01:06:51', 16, 5),
+(32, 'dobry wieczor ', '2016-11-20 00:27:56', 49, 22),
+(33, '4567 ha ha ha ha', '2016-11-20 00:28:16', 49, 19),
+(34, 'no piÄ™knie', '2016-11-20 00:30:37', 2, 23),
+(35, ':(', '2016-11-20 00:38:44', 50, 24),
+(36, 'zasypiamy nad klawiaturÄ…', '2016-11-20 00:39:17', 50, 22);
 
 -- --------------------------------------------------------
 
@@ -90,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `Messages` (
   PRIMARY KEY (`messageId`),
   KEY `recipientUserId` (`recipientUserId`),
   KEY `senderUserId` (`senderUserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `Messages`
@@ -101,12 +106,17 @@ INSERT INTO `Messages` (`messageId`, `creationDate`, `isRead`, `recipientUserId`
 (2, '2016-10-29 00:20:47', 0, 9, 48, 'testowy 2'),
 (3, '2016-10-29 00:23:51', 0, 17, 48, 'nowa wiadomoÅ›Ä‡ do Ciebie'),
 (4, '2016-10-29 00:25:32', 0, 1, 48, ':)'),
-(5, '2016-10-29 00:26:03', 0, 1, 48, 'klklklk nmnmnmn\r\nooooo pppp'),
-(6, '2016-10-29 01:00:13', 0, 1, 1, 'test do siebie'),
+(5, '2016-10-29 00:26:03', 1, 1, 48, 'klklklk nmnmnmn\r\nooooo pppp'),
+(6, '2016-10-29 01:00:13', 1, 1, 1, 'test do siebie'),
 (7, '2016-10-29 01:03:39', 0, 11, 10, 'raz dwa trzy'),
 (8, '2016-10-29 01:03:48', 0, 11, 10, 'raz osiem dwa'),
 (9, '2016-10-29 01:04:22', 0, 11, 16, 'hello world'),
-(10, '2016-10-29 01:08:11', 0, 10, 16, '?');
+(10, '2016-10-29 01:08:11', 0, 10, 16, '?'),
+(11, '2016-11-20 00:29:01', 1, 1, 49, 'coz za piekny i chlodny wieczor.:)))'),
+(12, '2016-11-20 00:30:59', 1, 49, 2, 'kogo moje piÄ™kne oczy widzÄ…'),
+(13, '2016-11-20 00:32:20', 1, 2, 49, 'To chyba pomyÅ‚ka'),
+(14, '2016-11-20 00:38:32', 0, 2, 50, 'zdrÃ³wka'),
+(15, '2016-11-20 00:39:02', 0, 1, 50, 'A gdzie Pani siÄ™ podziaÅ‚a?');
 
 -- --------------------------------------------------------
 
@@ -121,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `Tweet` (
   `creationDate` datetime NOT NULL,
   PRIMARY KEY (`tweetId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `Tweet`
@@ -145,7 +155,14 @@ INSERT INTO `Tweet` (`tweetId`, `userId`, `text`, `creationDate`) VALUES
 (15, 11, 'gdzie jest zosia?', '2016-10-29 01:02:51'),
 (16, 16, 'dobre wieÅ›cie :)', '2016-10-29 01:04:39'),
 (17, 16, 'Dobranoc wszystkim', '2016-10-29 01:07:05'),
-(18, 10, 'nowy tweet', '2016-10-29 01:08:30');
+(18, 10, 'nowy tweet', '2016-10-29 01:08:30'),
+(19, 1, '123...', '2016-10-29 12:35:09'),
+(20, 1, '456..', '2016-10-29 12:35:19'),
+(21, 1, '456..', '2016-10-29 12:35:22'),
+(22, 1, 'ggggggg tttt', '2016-10-29 12:35:38'),
+(23, 49, 'Witam!', '2016-11-20 00:29:25'),
+(24, 2, 'Kolejny piekny dzien. ChorÃ³bsko vs ja 1:0 :/', '2016-11-20 00:30:26'),
+(25, 50, 'czary czary czary', '2016-11-20 00:38:21');
 
 -- --------------------------------------------------------
 
@@ -160,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `hashedPassword` varchar(255) NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `Users`
@@ -180,7 +197,9 @@ INSERT INTO `Users` (`userId`, `userName`, `email`, `hashedPassword`) VALUES
 (16, 'Karol', 'karol@gmail.com', '$2y$10$3kTINFFULWAwXQs/jt62C.tiuhYW1e5YvKQ/TvOgwwc34Ua7W9dJi'),
 (17, 'kamila', 'kamila@gmail.com', '$2y$10$vLZaVFXGQqcPqaHsHTJoU.gqIEtLy83gAI8drV8ioQFAWoG6s4BtO'),
 (47, 'jeremi', 'jeremi@gmail.com', '$2y$10$MVJH/C.pzjt2kRDWm5V6J.XN/y7HEsDxCxuUJZMMJs2cdPf1OcYN6'),
-(48, 'michal', 'michal@gmail.com', '$2y$10$yAYW/K88Nm48IEuJRHHFP.p82SknhXMo596tQytDzgASm136Vctze');
+(48, 'michal', 'michal@gmail.com', '$2y$10$yAYW/K88Nm48IEuJRHHFP.p82SknhXMo596tQytDzgASm136Vctze'),
+(49, 'karol4', 'karol4@mail.com', '$2y$10$f1F2i2ov9Q.YlaBk/2GBgerIFY7VSojj/M5XGZXkU6udEpd9hGyDW'),
+(50, 'wojtek', 'wojtek@gmail.com', '$2y$10$B03MIcVnIkIlOw5M.b3W.OyYQtIrG.um5P9wutOdvRkPv4DGgZHCq');
 
 --
 -- Constraints for dumped tables
