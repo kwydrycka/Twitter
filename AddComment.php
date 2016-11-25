@@ -3,14 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Twitter Add Comment</title>
-        <style>
-            .error
-            {
-                color:red;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-        </style>        
+        <link rel="stylesheet"  type="text/css" href="css/style.css">      
     </head>
     <body>
 
@@ -53,16 +46,16 @@
             $newComment->setText($comment);
             $newComment->setCreationDate(date('Y-m-d H:i:s'));
 
-                if($newComment->saveToDB($connection)) {
-                    echo "Your comment has been added...<br>";
-                    $connection->close();
-                    $connection = null;
-                    header ('Refresh:1; url=AddComment.php?tweetId='.$_SESSION['tweetId']);
-                    unset ($_SESSION['tweetId']);
-                    exit();
-                } else {
-                     echo "<span class= error>Error</span><br>";
-                }  
+            if($newComment->saveToDB($connection)) {
+                echo "Your comment has been added...<br>";
+                $connection->close();
+                $connection = null;
+                header ('Refresh:1; url=AddComment.php?tweetId='.$_SESSION['tweetId']);
+                unset ($_SESSION['tweetId']);
+                exit();
+            } else {
+                echo "<span class= error>Error</span><br>";
+            }  
         }
     }
   ?>

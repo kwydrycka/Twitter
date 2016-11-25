@@ -3,14 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Twitter Registration</title>
-        <style>
-            .error
-            {
-                color:red;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-        </style>
+        <link rel="stylesheet"  type="text/css" href="css/style.css">
     </head>
     <body>
         <?php
@@ -18,7 +11,7 @@
         if(isset($_SESSION['userId']) && $_SESSION['userId'] != -1){       
             // przekierowanie do Index.php i zakonczenie dzialania skryptu
             header("Location: Index.php");
-        exit();
+            exit();
         }
         
         require_once 'src/Connection.php';

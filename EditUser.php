@@ -3,14 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Twitter Edit User</title>
-        <style>
-            .error
-            {
-                color:red;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-        </style>
+        <link rel="stylesheet"  type="text/css" href="css/style.css">
     </head>
     <body>
 <?php

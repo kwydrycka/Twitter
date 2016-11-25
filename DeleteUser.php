@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Twitter Remove Account</title>
+        <link rel="stylesheet"  type="text/css" href="css/style.css">        
     </head>
     <body>
 <?php

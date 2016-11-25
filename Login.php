@@ -3,14 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Twitter Login Page</title>
-        <style>
-            .error
-            {
-                color:red;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-        </style>        
+        <link rel="stylesheet"  type="text/css" href="css/style.css">     
     </head>
     <body>
         
@@ -29,31 +22,29 @@
     echo '<h3 align = "center">Twitter Login Page</h3>';
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['email']) && isset($_POST['password'])) {
-        if(strlen(trim($_POST['email']))>0 && strlen(trim($_POST['password']))>0) {
-            $email = trim($_POST['email']);
-            $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
-            $password = trim($_POST['password']);
+        if (isset($_POST['email']) && isset($_POST['password'])) {
+            if(strlen(trim($_POST['email']))>0 && strlen(trim($_POST['password']))>0) {
+                $email = trim($_POST['email']);
+                $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
+                $password = trim($_POST['password']);
 		
-		if ((filter_var($emailB, FILTER_VALIDATE_EMAIL)==true) && ($emailB == $email))
-                {
-		
+		if ((filter_var($emailB, FILTER_VALIDATE_EMAIL)==true) && ($emailB == $email)) {
+	
                     $id = User::checkUserPasswordGetId($connection, $email, $password);
 
                     if ($id!= -1) {
-                    $_SESSION['userId'] = $id; 
-                    header('Location: Index.php');
-                    exit();
+                        $_SESSION['userId'] = $id; 
+                        header('Location: Index.php');
+                        exit();
                     }  
                 }
+            }
         }
-        
-    }
-    echo '<span class=error>Invalid email or password.</span><br><br>';
+        echo '<span class=error>Invalid email or password.</span><br><br>';
     }
 
-$connection->close();
-$connection = null;
+    $connection->close();
+    $connection = null;
 	
 
 ?>	

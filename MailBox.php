@@ -3,14 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Mail Box</title>
-        <style>
-            .error
-            {
-                color:red;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-        </style>        
+        <link rel="stylesheet"  type="text/css" href="css/style.css">       
     </head>
     <body>
 
@@ -72,7 +65,7 @@
         echo'<table border = 0>';
 
     foreach ($loadSent as $message) {
-                if (!$message->getIsRead()) {
+        if (!$message->getIsRead()) {
             $startB = '<b>';
             $unread = "<b>Unread</b>";
             $endB = '</b>';
